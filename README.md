@@ -34,6 +34,8 @@ Progress Report
 |         | 1 units   | P_S01 | 받은 4개 데이터 통합     |
 |         | 2 units  | P_S02 | Flights Climbed 데이터의 변화 순간에 해당하는 통합 데이터 따로 저장  |
 |         | 7 units  | P_S03 | 통합 데이터 중 GPS 위치들을 기반으로 계단 위치 지정(면적화) |
+|         | 7 units  | P_S03 | P_S01~03에 대한 여러 sample 들을 중복시켜 특정 임계값을 넘는 면적 계산 |
+|         | 5 units  | P_S04 | 무게중심 GPS 위치 계산 및 추가 정보 입력(계단 크기, 경사) |
 
 ### Milestone 3
 
