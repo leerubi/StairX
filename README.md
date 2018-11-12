@@ -31,9 +31,9 @@ Progress Report
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         | 1 units   | I_S01 | 받은 4개 데이터 통합     |
-|         | 2 units  | I_S02 | Flights Climbed 데이터의 변화 순간에 해당하는 통합 데이터 따로 저장  |
-|         | 7 units  | I_S03 | 통합 데이터 중 GPS 위치들을 기반으로 계단 위치 지정(면적화) |
+|         | 1 units   | P_S01 | 받은 4개 데이터 통합     |
+|         | 2 units  | P_S02 | Flights Climbed 데이터의 변화 순간에 해당하는 통합 데이터 따로 저장  |
+|         | 7 units  | P_S03 | 통합 데이터 중 GPS 위치들을 기반으로 계단 위치 지정(면적화) |
 
 ### Milestone 3
 
