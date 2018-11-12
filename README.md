@@ -2,7 +2,7 @@ Project ``StairX``
 =======================
 2018 POSTECH Hackathon
 
-Experiences 
+Members
 -----------
 
 - [Dajin Lee](https://github.com/leerubi)
