@@ -37,11 +37,13 @@ Progress Report
 |         | 4 units  | P_S04 | P_S01~03에 대한 여러 sample 들을 중복시켜 특정 임계값을 넘는 면적 계산 |
 |         | 4 units  | P_S05 | 무게중심 GPS 위치 계산 및 추가 정보 입력(계단 크기, 경사) |
 
+- 계단 위치 추정 시 ML기법 활용하게 될 수도 있음
+
 ### Milestone 3
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         | 2 units   | I_S01 | 실시간 GPS 데이터 기록     |
-|         | 5 units  | I_S02 | FlightsClimbed 데이터 추출 or 실시간 기록  |
-|         | 3 units  | I_S03 | 실시간 Relative Altitude 기록  |
-|         | 3 units  | I_S04 | 실시간 Pressure 기록  |
+|         |           |       |             |
+|         |           |       |             |
+
+- Web 지도 상에 추정한 계단 위치 띄우기
