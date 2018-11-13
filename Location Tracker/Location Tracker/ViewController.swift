@@ -16,42 +16,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     let locationManager: CLLocationManager = CLLocationManager()
     let altimeter = CMAltimeter()
     var writeString = ""
-    var FILE_URL: URL = URL(fileURLWithPath: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
-        /*
-         I_S05: Export Recorded Data
-         Task: Record Data to One String
-         */
-//        let fileName = "recordedData"
-//        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-//        let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
-//        FILE_URL = fileURL
-//
-//        print("File Path: \(fileURL.path)")
-//
-//        let writeString = "dummy strings..."
-//        do {
-//            try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-//        } catch let error as NSError {
-//            print("Fail to write to URL ")
-//            print(error)
-//        }
-//
-//        var readString = ""
-//        do {
-//            readString = try String(contentsOf: fileURL)
-//        } catch let error as NSError {
-//            print("Fail to read to URL ")
-//            print(error)
-//        }
-//
-//        print("Contents of the file: \(readString)")
-        
         
         /*
          I_S01: Record GPS latitude and logitude
@@ -103,6 +71,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     
     @IBOutlet weak var emailButton: UIButton!
     
+    /*
+     I_S05: Export Recorded Data
+     Task: Send an email with attached file
+     */
     @IBAction func sendEmail(_ sender: UIButton) {
         
         let mSubject = "StairX: Recorded data"
