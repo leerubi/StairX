@@ -85,9 +85,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     
     @IBAction func sendEmail(_ sender: UIButton) {
         
-        let mSubject = "The subject of the e-mail"
+        let mSubject = "StairX: Recorded data"
         
-        let mBody = "Hi! This is an e-mail. Please see the attached file."
+        let mBody = "This is an e-mail from StairX. Please see the attached file. \(NSDate())"
         
         let mRecipients = ["dj112200@gmail.com"]
         
