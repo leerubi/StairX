@@ -89,6 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         
         doEmail(subject: mSubject, body: mBody, recipients: mRecipients, attachment: mAttachment, attachmentName: mAttachmentName)
         
+        writeString = ""
     }
     
     func doEmail(subject: String, body: String, recipients: Array<Any>, attachment: Data, attachmentName: String ) {
