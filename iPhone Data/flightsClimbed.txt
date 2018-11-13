@@ -1,0 +1,1 @@
+ <Record type="HKQuantityTypeIdentifierFlightsClimbed" sourceName="이다진의 iPhone" sourceVersion="12.1" device="&lt;&lt;HKDevice: 0x2809ede00&gt;, name:iPhone, manufacturer:Apple, model:iPhone, hardware:iPhone10,4, software:12.1&gt;" unit="count" creationDate="2018-11-14 01:23:45 +0900" startDate="2018-11-14 01:13:31 +0900" endDate="2018-11-14 01:13:42 +0900" value="1"/>
