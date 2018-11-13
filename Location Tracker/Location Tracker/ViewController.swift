@@ -15,54 +15,72 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     
     let locationManager: CLLocationManager = CLLocationManager()
     let altimeter = CMAltimeter()
+    var writeString = ""
     var FILE_URL: URL = URL(fileURLWithPath: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let fileName = "recordedData"
-        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
-        FILE_URL = fileURL
         
-        print("File Path: \(fileURL.path)")
+        /*
+         I_S05: Export Recorded Data
+         Task: Record Data to One String
+         */
+//        let fileName = "recordedData"
+//        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+//        let fileURL = DocumentDirURL.appendingPathComponent(fileName).appendingPathExtension("txt")
+//        FILE_URL = fileURL
+//
+//        print("File Path: \(fileURL.path)")
+//
+//        let writeString = "dummy strings..."
+//        do {
+//            try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+//        } catch let error as NSError {
+//            print("Fail to write to URL ")
+//            print(error)
+//        }
+//
+//        var readString = ""
+//        do {
+//            readString = try String(contentsOf: fileURL)
+//        } catch let error as NSError {
+//            print("Fail to read to URL ")
+//            print(error)
+//        }
+//
+//        print("Contents of the file: \(readString)")
         
-        let writeString = "dummy strings..."
-        do {
-            try writeString.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-        } catch let error as NSError {
-            print("Fail to write to URL ")
-            print(error)
-        }
         
-        var readString = ""
-        do {
-            readString = try String(contentsOf: fileURL)
-        } catch let error as NSError {
-            print("Fail to read to URL ")
-            print(error)
-        }
-        
-        print("Contents of the file: \(readString)")
-        
+        /*
+         I_S01: Record GPS latitude and logitude
+         Task: Add Information to One String
+         */
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        /*
-         locationManager.distanceFilter = 100 // 100 m 움직일 때마다 GPS 좌표를 print
-         // 하지만 10초마다 업데이트? -> Blackbox
-         locationManager.stopUpdatingLocation()
-         */
+//        locationManager.distanceFilter = 100 // 100 m 움직일 때마다 GPS 좌표를 print
+//        // 하지만 10초마다 업데이트? -> Blackbox
+//        locationManager.stopUpdatingLocation()
         
+        /*
+         I_S03, I_S04: Record Relative Altitude and Pressure
+         Task: Add Information to One String
+         relativeAltitude unit: m
+         pressure unit: hPA
+         */
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
-                print(NSDate())
+        
+                print(NSDate().description)
                 print("relativeAltitude:"+String.init(format: "%.9f", (data?.relativeAltitude.floatValue)!))
-                // relativeAltitude unit: m
-                
                 print("pressure:"+String.init(format: "%.9f ", (data?.pressure.floatValue)!*10))
-                // pressure unit: hPA
+              
+                self.writeString += "\(NSDate().description))\n"
+                self.writeString += "relativeAltitude:"+String.init(format: "%.9f", (data?.relativeAltitude.floatValue)!)+"\n"
+                self.writeString += "pressure:"+String.init(format: "%.9f ", (data?.pressure.floatValue)!*10)+"\n"
+                
             }
         }
 
@@ -71,13 +89,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         for currentLocation in locations {
-            print(currentLocation.timestamp)
+            print(currentLocation.timestamp.description)
             print("altitude:\(currentLocation.altitude)")
             print("latitude:\(currentLocation.coordinate.latitude)")
             print("longitude:\(currentLocation.coordinate.longitude)")
-//            print("movedDistance: \(currentLocation.distance(from: prevLocation))")
-
             
+            self.writeString += "\(currentLocation.timestamp.description)\n"
+            self.writeString += "altitude:\(currentLocation.altitude)\n"
+            self.writeString += "latitude:\(currentLocation.coordinate.latitude)\n"
+            self.writeString += "longitude:\(currentLocation.coordinate.longitude)\n"
         }
     }
     
@@ -87,11 +107,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         
         let mSubject = "StairX: Recorded data"
         
-        let mBody = "This is an e-mail from StairX. Please see the attached file. \(NSDate())"
+        let mBody = "This is an e-mail from StairX.\nPlease see the attached file.\nCreated at\(NSDate())"
         
         let mRecipients = ["dj112200@gmail.com"]
         
-        let mAttachment = "Some content".data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        let mAttachment = writeString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
         let mAttachmentName = "recoredData.txt"
         
@@ -140,7 +160,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     }
     
     // mailer delegate
-    
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
         var  message = ""
