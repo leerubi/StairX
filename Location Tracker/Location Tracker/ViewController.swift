@@ -41,9 +41,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
         
-                print(NSDate().description)
-                print("relativeAltitude:"+String.init(format: "%.9f", (data?.relativeAltitude.floatValue)!))
-                print("pressure:"+String.init(format: "%.9f ", (data?.pressure.floatValue)!*10))
+//                print(NSDate().description)
+//                print("relativeAltitude:"+String.init(format: "%.9f", (data?.relativeAltitude.floatValue)!))
+//                print("pressure:"+String.init(format: "%.9f ", (data?.pressure.floatValue)!*10))
               
                 self.writeString += "\(NSDate().description))\n"
                 self.writeString += "relativeAltitude:"+String.init(format: "%.9f", (data?.relativeAltitude.floatValue)!)+"\n"
@@ -57,10 +57,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         for currentLocation in locations {
-            print(currentLocation.timestamp.description)
-            print("altitude:\(currentLocation.altitude)")
-            print("latitude:\(currentLocation.coordinate.latitude)")
-            print("longitude:\(currentLocation.coordinate.longitude)")
+//            print(currentLocation.timestamp.description)
+//            print("altitude:\(currentLocation.altitude)")
+//            print("latitude:\(currentLocation.coordinate.latitude)")
+//            print("longitude:\(currentLocation.coordinate.longitude)")
             
             self.writeString += "\(currentLocation.timestamp.description)\n"
             self.writeString += "altitude:\(currentLocation.altitude)\n"
@@ -79,9 +79,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         
         let mSubject = "StairX: Recorded data"
         
-        let mBody = "This is an e-mail from StairX.\nPlease see the attached file.\nCreated at\(NSDate())"
+        let mBody = "This is an e-mail from StairX.\nPlease see the attached file.\nCreated at \(NSDate())"
         
-        let mRecipients = ["dj112200@gmail.com"]
+        let mRecipients = ["dj112200@gmail.com", "knw3011506@postech.ac.kr"]
         
         let mAttachment = writeString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
