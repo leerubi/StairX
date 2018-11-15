@@ -11,10 +11,13 @@ def merge_same_time_data():
     for file in file_list:
 
         if file == '.DS_Store': continue
-        gps_data = pd.read_csv(root_path_source+file)
-        gps_data.groupby(['time'], as_index=False).mean()
+        data = pd.read_csv(root_path_source+file)
+        processed_data = data.groupby(['time'], as_index=False).mean()
         f_processed = root_path_csv + file[:-4] + "_processed.csv"
-        gps_data.to_csv(f_processed)
+        processed_data.to_csv(f_processed)
+
+def merge_two_csvs():
+    print("implement!")
 
 def impute_empty_time_data():
     print("implement!")
