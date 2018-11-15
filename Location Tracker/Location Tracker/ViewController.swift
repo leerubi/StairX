@@ -85,7 +85,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         
         let mAttachment = writeString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
-        let mAttachmentName = "recoredData.txt"
+        let mAttachmentName = "\(NSDate().description).txt"
         
         doEmail(subject: mSubject, body: mBody, recipients: mRecipients, attachment: mAttachment, attachmentName: mAttachmentName)
         
