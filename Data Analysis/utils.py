@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 def merge_same_time_data():
 
@@ -18,6 +19,8 @@ def merge_same_time_data():
 
 def interpolation():
 
+    # 시간 간격이 10초 이상일 때는 interpolation하지 않는 기능 추후 구현
+
     root_path_from = 'iPhone Data/processed_csvs/'
     root_path_to = 'iPhone Data/interpolated_csvs/'
     file_list = os.listdir(root_path_from)
@@ -25,6 +28,20 @@ def interpolation():
     for file in file_list:
 
         if file == '.DS_Store': continue
+
+        data = pd.read_csv(root_path_from + file)
+        range = np.arange(data['time'].values[0], data['time'].values[-1])
+
+        for elem in range:
+            if elem not in np.array(data['time']):
+                data = data.append({'time': elem}, ignore_index=True)
+
+        data = data.sort_values('time').reset_index(drop=False)
+        data = data.interpolate()
+
+        f_interpolated = root_path_to + file[:-4] + "_interpolated.csv"
+        data.to_csv(f_interpolated)
+
 
 
 def merge_two_csvs():
