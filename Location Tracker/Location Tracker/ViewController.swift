@@ -85,7 +85,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         
         let mAttachment = writeString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
-        let mAttachmentName = "\(NSDate().description).txt"
+        /*
+         시간 정보로 텍스트 파일 이름을 지정하고자 함.
+         */
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let myString = formatter.string(from: Date())
+        let yourDate = formatter.date(from: myString)
+        formatter.dateFormat = "yyyy-MMM-dd_HH-mm-ss"
+        let myStringafd = formatter.string(from: yourDate!)
+    
+        let mAttachmentName = "\(myStringafd).txt"
         
         doEmail(subject: mSubject, body: mBody, recipients: mRecipients, attachment: mAttachment, attachmentName: mAttachmentName)
         
