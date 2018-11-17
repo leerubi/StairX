@@ -9,6 +9,10 @@ def load_location():
     file_list = os.listdir(root_path_from)
 
     for file in file_list:
+        if file == '.DS_Store': continue
+        if file == '.DS_S_sensor.csv': continue
+        if file == '.DS_S_gps.csv': continue
+
         f_gps = root_path_to + file[:-4] + "_gps.csv"
         f_sensor = root_path_to + file[:-4] + "_sensor.csv"
 
@@ -69,6 +73,8 @@ def load_flightsClimbed():
 
     for file in file_list:
         if file == '.DS_Store': continue
+        if file == '.DS_S_sensor.csv': continue
+        if file == '.DS_S_gps.csv': continue
 
         with open(root_path_from + file, 'r') as f:
 

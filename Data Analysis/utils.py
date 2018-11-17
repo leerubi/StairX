@@ -10,6 +10,8 @@ def merge_same_time_data():
     for file in file_list:
 
         if file == '.DS_Store': continue
+        if file == '.DS_S_sensor.csv': continue
+        if file == '.DS_S_gps.csv': continue
 
         data = pd.read_csv(root_path_from + file)
         processed_data = data.groupby(['date'], as_index=False).mean()
@@ -26,6 +28,8 @@ def merge_two_csvs():
     for file in file_list:
 
         if file == '.DS_Store': continue
+        if file == '.DS_S_sensor.csv': continue
+        if file == '.DS_S_gps.csv': continue
 
         f_gps = root_path_from + file[:-4] + "_gps_processed.csv"
         f_sensor = root_path_from + file[:-4] + "_sensor_processed.csv"
@@ -56,6 +60,8 @@ def merge_Location_and_FlightsClimbed():
 
     for file1 in file_list1:
         if file1 == '.DS_Store': continue
+        if file1 == '.DS_S_sensor.csv': continue
+        if file1 == '.DS_S_gps.csv': continue
         temp = pd.read_csv(root_path_from1 + file1)
         data1 = data1.append(temp)
 
@@ -63,6 +69,8 @@ def merge_Location_and_FlightsClimbed():
 
     for file2 in file_list2:
         if file2 == '.DS_Store': continue
+        if file2 == '.DS_S_sensor.csv': continue
+        if file2 == '.DS_S_gps.csv': continue
         temp = pd.read_csv(root_path_from2 + file2)
         data2 = data2.append(temp)
 
