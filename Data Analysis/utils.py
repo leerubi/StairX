@@ -1,8 +1,5 @@
 import os
-import csv
 import pandas as pd
-import datetime
-from dateutil.parser import parse
 
 def merge_same_time_data():
 
@@ -45,10 +42,22 @@ def merge_two_csvs():
 
         data_merged.to_csv(f_merged)
 
+def merge_Location_and_FlightsClimbed():
 
+    root_path_from1 = 'iPhone Data/csvs/merged_csvs/'
+    root_path_from2 = 'iPhone Data/FlightsClimbed/'
+    root_path_to = 'iPhone Data/Stairs/'
+    file_list1 = os.listdir(root_path_from1)
+    file_list2 = os.listdir(root_path_from2)
 
-def impute_empty_time_data():
-    print("implement!")
+    data1 = pd.DataFrame()
+    data2 = pd.DataFrame()
 
-def drop_out_egde_data():
-    print("implement!")
+    for file1 in file_list1:
+        if file1 == '.DS_Store': continue
+        temp = pd.read_csv(root_path_from1 + file1)
+        data1 = data1.append(temp)
+
+    data1 = data1.sort_values(["date"], ascending=[True])
+
+    # FlightsClimbed 하고 다시 오자!
