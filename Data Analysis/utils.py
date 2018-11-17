@@ -53,7 +53,8 @@ def merge_Location_and_FlightsClimbed():
     root_path_to = 'iPhone Data/Stairs/'
     file_list1 = os.listdir(root_path_from1)
     file_list2 = os.listdir(root_path_from2)
-    f_merged = root_path_to + "stairs.csv"
+    f_merged1 = root_path_to + "stairs.csv"
+    f_merged2 = root_path_to + "stairs_or_not.csv"
 
     data1 = pd.DataFrame()
     data2 = pd.DataFrame()
@@ -78,7 +79,11 @@ def merge_Location_and_FlightsClimbed():
 
     data_merged = data1.merge(data2, left_on='date', right_on='date', how='outer')
     data_merged = data_merged.drop(columns=['Unnamed: 0', 'index', 'Unnamed: 0_y'])
-    data_merged = data_merged.dropna()
-    data_merged = data_merged.drop(columns=['Unnamed: 0_x'])
 
-    data_merged.to_csv(f_merged)
+    data_merged1 = data_merged.dropna()
+    data_merged1 = data_merged1.drop(columns=['Unnamed: 0_x'])
+    data_merged1.to_csv(f_merged1)
+
+    data_merged.fillna(0, inplace=True)
+    data_merged = pd.DataFrame(data_merged).drop(columns=['Unnamed: 0_x'])
+    data_merged.to_csv(f_merged2)
