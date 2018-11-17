@@ -4,6 +4,6 @@ from utils import merge_same_time_data, merge_two_csvs, merge_Location_and_Fligh
 # load_data()
 # merge_same_time_data()
 # merge_two_csvs()
-# merge_Location_and_FlightsClimbed()
+# load_flightsClimbed()
 
-load_flightsClimbed()
+merge_Location_and_FlightsClimbed()

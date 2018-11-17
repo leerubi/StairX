@@ -2,7 +2,6 @@ import os
 import csv
 import datetime
 from dateutil.parser import parse
-import pandas as pd
 
 def load_location():
     root_path_from = 'iPhone Data/Location/'

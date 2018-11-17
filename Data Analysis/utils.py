@@ -45,10 +45,11 @@ def merge_two_csvs():
 def merge_Location_and_FlightsClimbed():
 
     root_path_from1 = 'iPhone Data/csvs/merged_csvs/'
-    root_path_from2 = 'iPhone Data/FlightsClimbed/'
+    root_path_from2 = 'iPhone Data/csvs/flightsClimbed_csvs/'
     root_path_to = 'iPhone Data/Stairs/'
     file_list1 = os.listdir(root_path_from1)
     file_list2 = os.listdir(root_path_from2)
+    f_merged = root_path_to + "stairs.csv"
 
     data1 = pd.DataFrame()
     data2 = pd.DataFrame()
@@ -60,4 +61,16 @@ def merge_Location_and_FlightsClimbed():
 
     data1 = data1.sort_values(["date"], ascending=[True])
 
-    # FlightsClimbed 하고 다시 오자!
+    for file2 in file_list2:
+        if file2 == '.DS_Store': continue
+        temp = pd.read_csv(root_path_from2 + file2)
+        data2 = data2.append(temp)
+
+    data2 = data2.sort_values(["date"], ascending=[True])
+
+    data_merged = data1.merge(data2, left_on='date', right_on='date', how='outer')
+    data_merged = data_merged.drop(columns=['Unnamed: 0', 'index', 'Unnamed: 0_y'])
+    data_merged = data_merged.dropna()
+    data_merged = data_merged.drop(columns=['Unnamed: 0_x'])
+
+    data_merged.to_csv(f_merged)
