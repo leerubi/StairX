@@ -4,8 +4,8 @@ import numpy as np
 
 def merge_same_time_data():
 
-    root_path_from = 'iPhone Data/csvs/'
-    root_path_to = 'iPhone Data/processed_csvs/'
+    root_path_from = 'iPhone Data/csvs/loaded_csvs/'
+    root_path_to = 'iPhone Data/csvs/processed_csvs/'
     file_list = os.listdir(root_path_from)
 
     for file in file_list:
@@ -13,7 +13,7 @@ def merge_same_time_data():
         if file == '.DS_Store': continue
 
         data = pd.read_csv(root_path_from + file)
-        processed_data = data.groupby(['time'], as_index=False).mean()
+        processed_data = data.groupby(['date'], as_index=False).mean()
         f_processed = root_path_to + file[:-4] + "_processed.csv"
         processed_data.to_csv(f_processed)
 
