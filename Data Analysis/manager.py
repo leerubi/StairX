@@ -1,10 +1,11 @@
 import os
 import csv
-from datetime import date
+import datetime
+from dateutil.parser import parse
 
 def load_data():
     root_path_from = 'iPhone Data/Location/'
-    root_path_to = 'iPhone Data/csvs/'
+    root_path_to = 'iPhone Data/csvs/loaded_csvs/'
     file_list = os.listdir(root_path_from)
 
     for file in file_list:
@@ -15,11 +16,11 @@ def load_data():
 
             with open(f_gps, 'w') as f_gps_out:
                 csvWriter = csv.writer(f_gps_out)
-                csvWriter.writerow(['time', 'altitude', 'latitude', 'longitude'])
+                csvWriter.writerow(['date', 'altitude', 'latitude', 'longitude'])
 
             with open(f_sensor, 'w') as f_sensor_out:
                 csvWriter = csv.writer(f_sensor_out)
-                csvWriter.writerow(['time', 'relativeAltitude', 'pressure'])
+                csvWriter.writerow(['date', 'relativeAltitude', 'pressure'])
 
             while True:
                 line = f.readline()
@@ -27,20 +28,8 @@ def load_data():
 
                 if line.endswith("0000\n"):
                     # date
-                    yyyy = (int)(line[:4])
-                    mm = (int)(line[5:7])
-                    dd = (int)(line[8:10])
-
-                    d_std = date(2018, 1, 1)
-                    d_now = date(yyyy, mm, dd)
-                    delta = d_now - d_std
-                    time = delta.days * 86400
-
-                    # time
-                    hh = (int)(line[11:13])
-                    mm = (int)(line[14:16])
-                    ss = (int)(line[17:19])
-                    time += hh * 3600 + mm * 60 + ss
+                    date = line[:19]
+                    date = parse(date) + datetime.timedelta(hours=9)
 
                     # altitude, latitude, longitude
                     line = f.readline()
@@ -52,24 +41,12 @@ def load_data():
 
                     with open(f_gps, 'a') as f_gps_out:
                         csvWriter = csv.writer(f_gps_out)
-                        csvWriter.writerow([time, altitude, latitude, longitude])
+                        csvWriter.writerow([date, altitude, latitude, longitude])
 
                 elif line.endswith("0000)\n"):
                     # date
-                    yyyy = (int)(line[:4])
-                    mm = (int)(line[5:7])
-                    dd = (int)(line[8:10])
-
-                    d_std = date(2018, 1, 1)
-                    d_now = date(yyyy, mm, dd)
-                    delta = d_now - d_std
-                    time = delta.days * 86400
-
-                    # time
-                    hh = (int)(line[11:13])
-                    mm = (int)(line[14:16])
-                    ss = (int)(line[17:19])
-                    time += hh * 3600 + mm * 60 + ss
+                    date = line[:19]
+                    date = parse(date) + datetime.timedelta(hours=9)
 
                     # relativeAltitude, pressure
                     line = f.readline()
@@ -79,4 +56,4 @@ def load_data():
 
                     with open(f_sensor, 'a') as f_sensor_out:
                         csvWriter = csv.writer(f_sensor_out)
-                        csvWriter.writerow([time, relativeAltitude, pressure])
+                        csvWriter.writerow([date, relativeAltitude, pressure])
