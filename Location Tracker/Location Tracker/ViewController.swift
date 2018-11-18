@@ -16,28 +16,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
     let locationManager: CLLocationManager = CLLocationManager()
     let altimeter = CMAltimeter()
     var writeString = ""
+    var isRecording = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        /*
-         I_S01: Record GPS latitude and logitude
-         Task: Add Information to One String
-         */
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-//        locationManager.distanceFilter = 100 // 100 m 움직일 때마다 GPS 좌표를 print
-//        // 하지만 10초마다 업데이트? -> Blackbox
-//        locationManager.stopUpdatingLocation()
-        
-        /*
-         I_S03, I_S04: Record Relative Altitude and Pressure
-         Task: Add Information to One String
-         relativeAltitude unit: m
-         pressure unit: hPA
-         */
+        if isRecording {
+            locationManager.startUpdatingLocation()
+        }
+
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) { (data, error) in
         
@@ -69,38 +59,48 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MFMailCompose
         }
     }
     
-    @IBOutlet weak var emailButton: UIButton!
     
-    /*
-     I_S05: Export Recorded Data
-     Task: Send an email with attached file
-     */
+    
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var recordButton: UIButton!
+    
+    @IBAction func startRecord(_ sender: UIButton) {
+        isRecording = true
+        textView.text = "움직임을 기록하고 있습니다."
+        recordButton.setTitleColor(UIColor.gray, for: .normal)
+    }
+    
+    
     @IBAction func sendEmail(_ sender: UIButton) {
-        
+
         let mSubject = "StairX: Recorded data"
-        
+
         let mBody = "This is an e-mail from StairX.\nPlease see the attached file.\nCreated at \(NSDate())"
-        
+
         let mRecipients = ["dj112200@gmail.com", "knw3011506@postech.ac.kr"]
-        
+
         let mAttachment = writeString.data(using: String.Encoding.utf8, allowLossyConversion: false)!
-        
+
         /*
          시간 정보로 텍스트 파일 이름을 지정하고자 함.
          */
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+
         let myString = formatter.string(from: Date())
         let yourDate = formatter.date(from: myString)
         formatter.dateFormat = "yyyy-MMM-dd_HH-mm-ss"
         let myStringafd = formatter.string(from: yourDate!)
-    
+
         let mAttachmentName = "\(myStringafd).txt"
-        
+
         doEmail(subject: mSubject, body: mBody, recipients: mRecipients, attachment: mAttachment, attachmentName: mAttachmentName)
-        
+
+        textView.text = "움직임 기록을 시작하세요!"
+        isRecording = false
         writeString = ""
+        recordButton.setTitleColor(UIColor.red, for: .normal)
     }
     
     func doEmail(subject: String, body: String, recipients: Array<Any>, attachment: Data, attachmentName: String ) {
