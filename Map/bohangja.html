@@ -1,0 +1,191 @@
+<html lang="ko"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">-->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<title>Bohangja</title>
+	<script src="https://api2.sktelecom.com/tmap/js?version=1&format=javascript&appKey=8821d117-dbd6-4a6c-8c6b-39d11be49d00"></script>
+	<!--<link rel="shortcut icon" type="image/x-icon" href="http://tmapapi.sktelecom.com/favicon.ico">-->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/sub.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/jquery.mCustomScrollbar.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/jquery.treeview.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/default.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/jquery-ui.css">-->
+<!-- 	<link rel="stylesheet" type="text/css" href="/resources/css/guide.css"> -->
+<!-- 	<link rel="stylesheet" type="text/css" href="/resources/css/sample.css"> -->
+	<!--<link rel="stylesheet" type="text/css" href="./bohangja_files/custom.css">-->
+
+	<script type="text/javascript" src="./bohangja_files/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery-ui.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery.ui.touch-punch.min.js"></script>
+	<script type="text/javascript" src="./bohangja_files/placeholder.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery.treeview.js"></script>
+	<script type="text/javascript" src="./bohangja_files/highlight.pack.js"></script>
+	<script type="text/javascript" src="./bohangja_files/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="./bohangja_files/common.js"></script>
+	<script type="text/javascript" src="./bohangja_files/w3.js"></script>
+	<script type="text/javascript" src="./bohangja_files/highlight.pack.js"></script>
+	<!--<script src="./bohangja_files/js"></script><link rel="stylesheet" href="./bohangja_files/style.css" type="text/css"><script src="./bohangja_files/Core.js"></script><script src="./bohangja_files/Format.js"></script><script src="./bohangja_files/Add-on.js"></script>-->
+	<script type="text/javascript" src="./bohangja_files/shCore.js"></script>
+	<script type="text/javascript" src="./bohangja_files/shBrushJScript.js"></script>
+	<script type="text/javascript" src="./bohangja_files/shBrushXml.js"></script>
+	<!--<link type="text/css" rel="stylesheet" href="./bohangja_files/shCoreDefault.css">-->
+
+	<!-- CodeMirror -->
+	<script src="./bohangja_files/codemirror.js"></script>
+	<!--<link rel="stylesheet" href="./bohangja_files/codemirror.css">-->
+	<!--<link rel="stylesheet" href="./bohangja_files/xq-light.css">-->
+	<!--<link rel="stylesheet" href="./bohangja_files/panda-syntax.css">-->
+	<script src="./bohangja_files/javascript.js"></script>
+
+	<!--<style type="text/css">-->
+		<!--.syntaxhighlighter {-->
+		    <!--height: 600px;-->
+		    <!--width: 840px !important;-->
+		    <!--overflow-y: auto !important;-->
+		    <!--overflow-x: auto !important;-->
+		<!--}-->
+		<!---->
+		<!--/* 검색결과 디자인 관련 - START */-->
+		<!--#search_result a  {-->
+			<!--color: #cccccc-->
+		<!--}-->
+		<!--#search_result span {-->
+			<!--color: #ffffff-->
+		<!--}-->
+		<!--/* 검색결과 디자인 관련 - END */-->
+	<!--</style>-->
+
+	<script type="text/javascript">
+
+		var map;
+function initTmap(){
+
+ 	// 1. 지도 띄우기
+	map = new Tmap.Map({
+		div : 'map_div',
+		width : "100%",
+		height : "400px",
+	});
+	map.setCenter(new Tmap.LonLat("126.986072", "37.570028").transform("EPSG:4326", "EPSG:3857"), 15);
+
+	// 2. 시작, 도착 심볼찍기
+	// 시작
+	var markerStartLayer = new Tmap.Layer.Markers("start");
+	map.addLayer(markerStartLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
+	var marker_s = new Tmap.Marker(new Tmap.LonLat("126.977022", "37.569758").transform("EPSG:4326", "EPSG:3857"), icon);
+	markerStartLayer.addMarker(marker_s);
+
+	// 도착
+	var markerEndLayer = new Tmap.Layer.Markers("end");
+	map.addLayer(markerEndLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />", size, offset);
+	var marker_e = new Tmap.Marker(new Tmap.LonLat("126.997589", "37.570594").transform("EPSG:4326", "EPSG:3857"), icon);
+	markerEndLayer.addMarker(marker_e);
+
+	// 3. 경유지 심볼 찍기
+	var markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
+	map.addLayer(markerWaypointLayer);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset);
+	var marker = new Tmap.Marker(new Tmap.LonLat("126.983072", "37.573028").transform("EPSG:4326", "EPSG:3857"), icon);
+	markerWaypointLayer.addMarker(marker);
+
+	var size = new Tmap.Size(24, 38);
+	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_p.png' />", size, offset);
+	var marker = new Tmap.Marker(new Tmap.LonLat("126.987319", "37.565778").transform("EPSG:4326", "EPSG:3857"), icon);
+	markerWaypointLayer.addMarker(marker);
+
+	// 4. 경로탐색 API 사용요청
+	var headers = {};
+	headers["appKey"]="f3822d08-6fcc-4d0c-b6bd-fb7634cea861";
+	$.ajax({
+		method:"POST",
+		headers : headers,
+		url:"https://api2.sktelecom.com/tmap/routes/pedestrian?version=1&format=xml",//
+		async:false,
+		data:{
+			startX : "126.977022",
+			startY : "37.569758",
+			endX : "126.997589",
+			endY : "37.570594",
+			passList : "126.987319,37.565778_126.983072,37.573028",
+			reqCoordType : "WGS84GEO",
+			resCoordType : "EPSG3857",
+			angle : "172",
+			startName : "출발지",
+			endName : "도착지"
+		},
+		success:function(response){
+			prtcl = response;
+
+			// 결과 출력
+			var innerHtml ="";
+			var prtclString = new XMLSerializer().serializeToString(prtcl);//xml to String
+		    xmlDoc = $.parseXML( prtclString ),
+		    $xml = $( xmlDoc ),
+	    	$intRate = $xml.find("Document");
+
+	    	var tDistance = "총 거리 : "+($intRate[0].getElementsByTagName("tmap:totalDistance")[0].childNodes[0].nodeValue/1000).toFixed(1)+"km,";
+	    	var tTime = " 총 시간 : "+($intRate[0].getElementsByTagName("tmap:totalTime")[0].childNodes[0].nodeValue/60).toFixed(0)+"분";
+
+	    	$("#result").text(tDistance+tTime);
+
+			// 6. 경로탐색 결과 Line 그리기
+			prtcl=new Tmap.Format.KML({extractStyles:true, extractAttributes:true}).read(prtcl);
+			var routeLayer = new Tmap.Layer.Vector("route");
+
+			routeLayer.events.register("beforefeatureadded", routeLayer, onBeforeFeatureAdded);
+		    function onBeforeFeatureAdded(e) {
+		        	var style = {};
+		        	switch (e.feature.attributes.styleUrl) {
+		        	case "#pointStyle":
+			        	style.externalGraphic = "http://topopen.tmap.co.kr/imgs/point.png";
+			        	style.graphicHeight = 16;
+			        	style.graphicOpacity = 1;
+			        	style.graphicWidth = 16;
+		        	break;
+		        	default:
+			        	style.strokeColor = "#ff0000";
+			        	style.strokeOpacity = "1";
+			        	style.strokeWidth = "5";
+		        	};
+		    	e.feature.style = style;
+		    }
+
+			routeLayer.addFeatures(prtcl);
+		    map.addLayer(routeLayer);
+
+			// 7. 지도반경만큼 지도레벨 조절
+			map.zoomToExtent(routeLayer.getDataExtent());
+		},
+		error:function(request,status,error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+
+}
+
+	</script>
+</head>
+    <body onload="initTmap()">
+        <div id="map_div">
+        </div>
+    </body>
+<p id="result"></p>
+
+</html>
