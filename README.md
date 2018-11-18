@@ -6,11 +6,13 @@ Members
 -----------
 
 - [Dajin Lee](https://github.com/leerubi)
-  - Swift for iOS
-  - Python for data processing and visualization
+  - Swift for recording and sending iPhone data
+  - Python for data processing and finding stairs location
+  - Javascript for search view and finding pathes using Kakao Map and T Map API
 
 - [Namwon Kim](https://github.com/NowWhy)
-  - Python for data processing and visualization
+  - Javascript for search view and finding pathes using Kakao Map and T Map API
+  - HTML & CSS for visualizing data and design the served map
 
 
 Progress Report
@@ -35,18 +37,20 @@ Progress Report
 | ------  | --------- | ----- | ----------- |
 |    4 units    | 1 units   | P_S01 | 받은 4개 데이터 통합     |
 |    1 units   | 2 units  | P_S02 | Flights Climbed 데이터의 변화 순간에 해당하는 통합 데이터 따로 저장  |
-|    -    | 7 units  | P_S03 | 통합 데이터 중 GPS 위치들을 기반으로 계단 위치 지정(면적화) |
-|    -     | 4 units  | P_S04 | P_S01~03에 대한 여러 sample 들을 중복시켜 특정 임계값을 넘는 면적 계산 |
-|    4     | 4 units  | P_S05 | 무게중심 GPS 위치 계산 및 추가 정보 입력(계단 크기, 경사) |
+|    Pass    | 7 units  | P_S03 | 통합 데이터 중 GPS 위치들을 기반으로 계단 위치 지정(면적화) |
+|    Pass     | 4 units  | P_S04 | P_S01~03에 대한 여러 sample 들을 중복시켜 특정 임계값을 넘는 면적 계산 |
+|    4 units    | 4 units  | P_S05 | 무게중심 GPS 위치 계산 및 추가 정보 입력(계단 크기, 경사) |
 
 - raw_data 기반으로 계단 위치 추정 결과
   - 위치 인식 훌륭
   - 계단 인식 훌륭
   - 계단 인식 시작 시간 훌륭
-  - 계단 인식 끝 시간을 정하는 기준을 모르겠음
+  - ``계단 인식 끝 시간을 정하는 기준을 모르겠음``
   
 - 계단 위치 정확도를 높이기 위한 방법
-  - isStair 정확도 -> 임계값을 주었더니 정확해짐! 데이터가 많을 수록 임계값 대신 voting법 등으로 계단 위치 추정도 가능해질 듯
+  - isStair 정확도
+    - ``임계값을 주었더니 정확해짐!``
+    - 데이터가 많을 수록 임계값 대신 voting법 등으로 계단 위치 추정도 가능해질 듯
   - GPS 정확도 -> 이미 높음
   - 내려가는 계단도 인식하기 -> Health App 내부 알고리즘 모르는 채로 힘듦
   - 낮으 계단이나 턱도 인식하기 -> 거의 불가능
@@ -56,8 +60,9 @@ Progress Report
 
 | actual  | estimated | story | description |
 | ------  | --------- | ----- | ----------- |
-|         |           |    M_S01   |             |
-|         |           |       |             |
+|    3 units     |    3 units     |    M_S01   |     Web 지도 상에 추정한 계단 위치 띄우기      |
+|    Fail    |     8 units      |   M_S02    |       계단을 피하는 경로 계산      |
+|    5 units     |      5 units     |   M_S03    |       경로 찾기 (+ 계단 위치 동시에 띄우기)    |
 
-- Web 지도 상에 추정한 계단 위치 띄우기
-- 계단을 피하는 경로 찾기 기능
+- M_S01: Kakao Map의 경우 쉬웠으나, T Map의 경우 오래 걸림
+- M_S02의 
