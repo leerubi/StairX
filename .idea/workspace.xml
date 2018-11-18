@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Map/bbb.html" afterPath="$PROJECT_DIR$/Map/bbb.html" />
       <change beforePath="$PROJECT_DIR$/Map/bohangja.html" afterPath="$PROJECT_DIR$/Map/bohangja.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,11 +63,13 @@
       <file leaf-file-name="bohangja.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="256" column="102" lean-forward="false" selection-start-line="256" selection-start-column="102" selection-end-line="256" selection-end-column="102" />
+            <state relative-caret-position="2010">
+              <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
               <folding>
-                <marker date="1542510680618" expanded="true" signature="9044:9056" ph="..." />
-                <marker date="1542510680618" expanded="true" signature="11384:11396" ph="..." />
+                <marker date="1542512458723" expanded="true" signature="9452:9464" ph="..." />
+                <marker date="1542512458723" expanded="true" signature="12044:12056" ph="..." />
+                <marker date="1542512458723" expanded="true" signature="17701:17713" ph="..." />
+                <marker date="1542512458723" expanded="true" signature="20275:20287" ph="..." />
               </folding>
             </state>
           </provider>
@@ -143,11 +144,13 @@
       <find>map_div</find>
       <find>initTmap</find>
       <find>126.986072</find>
-      <find>fullAddr</find>
       <find>btn_select</find>
-      <find>key</find>
       <find>result</find>
       <find>검색결과</find>
+      <find>ebservice/docs/fullTextG</find>
+      <find>fullAddr</find>
+      <find>pload/tmap/marker/pin</find>
+      <find>key</find>
     </findStrings>
     <replaceStrings>
       <replace>resources/css</replace>
@@ -798,11 +801,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="256" column="102" lean-forward="false" selection-start-line="256" selection-start-column="102" selection-end-line="256" selection-end-column="102" />
+        <state relative-caret-position="2010">
+          <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
           <folding>
-            <marker date="1542510680618" expanded="true" signature="9044:9056" ph="..." />
-            <marker date="1542510680618" expanded="true" signature="11384:11396" ph="..." />
+            <marker date="1542512458723" expanded="true" signature="9452:9464" ph="..." />
+            <marker date="1542512458723" expanded="true" signature="12044:12056" ph="..." />
+            <marker date="1542512458723" expanded="true" signature="17701:17713" ph="..." />
+            <marker date="1542512458723" expanded="true" signature="20275:20287" ph="..." />
           </folding>
         </state>
       </provider>

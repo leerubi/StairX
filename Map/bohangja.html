@@ -62,6 +62,9 @@
 
 	<script type="text/javascript">
 		var map;
+		var startAdress;
+		var lat_s, lon_s;
+		var lat_e, lon_e;
 function initTmap(){
  	// 1. 지도 띄우기
 	map = new Tmap.Map({
@@ -74,23 +77,218 @@ function initTmap(){
 
 	////////////
 		$("#btn_select").click(function(){
-		// 2. API 사용요청
-		var fullAddr = $('#fullAddr1').val();
-		$("#fullAddr1").text(fullAddr1); // $("#fullAddr2")?
+		// 2. API 사용요청 - 출발 버튼
+		var fullAddr1 = $('#fullAddr1').val();
+		$("#fullAddr1").text(fullAddr1);
 		$.ajax({
 			method:"GET",
 			url:"https://api2.sktelecom.com/tmap/geo/fullAddrGeo?version=1&format=xml&callback=result",
 			async:false,
 			data:{
 				"coordType" : "WGS84GEO",
-				"fullAddr" : fullAddr,
+				"fullAddr" : fullAddr1,
 				"page" : "1",
 				"count" : "20",
-				"appKey" : "f3822d08-6fcc-4d0c-b6bd-fb7634cea861",
+				"appKey" : "8821d117-dbd6-4a6c-8c6b-39d11be49d00",
 			},
 			success:function(response){
 				//기존 마커 지우기
-				markerStartLayer.clearMarkers();
+				// markerStartLayer.clearMarkers();
+
+				prtcl = response;
+
+				// 3. 마커 찍기
+				var prtclString = new XMLSerializer().serializeToString(prtcl);//xml to String
+			    xmlDoc = $.parseXML( prtclString ),
+			    $xml = $( xmlDoc ),
+			    $intRate = $xml.find("coordinate");
+
+				//검색 결과 정보가 없을 때 처리
+			  	if($intRate.length==0){
+			  		//예외처리를 위한 파싱 데이터
+				    $intError = $xml.find("error");
+
+					// 주소가 올바르지 않을 경우 예외처리
+				    if($intError.context.all[0].nodeName == "error"){
+				    	$("#result").text("요청 데이터가 올바르지 않습니다.");
+				    }
+			  	}
+
+			    var lon, lat;
+				if($intRate[0].getElementsByTagName("lon").length>0){//구주소
+					lon = $intRate[0].getElementsByTagName("lon")[0].childNodes[0].nodeValue;
+			    	lat = $intRate[0].getElementsByTagName("lat")[0].childNodes[0].nodeValue;
+				}else{//신주소
+					lon = $intRate[0].getElementsByTagName("newLon")[0].childNodes[0].nodeValue;
+					lat = $intRate[0].getElementsByTagName("newLat")[0].childNodes[0].nodeValue;
+				}
+				lon_s = lon
+				lat_s = lat
+                //
+                // var size = new Tmap.Size(24, 38);
+				// var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+				// var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_s.png' />", size, offset);
+				// var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
+				// markerStartLayer.addMarker(marker_s);
+                //
+				// // map.setCenter(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), 15);
+                //
+			  	// //검색 결과 표출
+				// var matchFlag, newMatchFlag;
+			  	// //검색 결과 주소를 담을 변수
+			  	// var address = '', newAddress = '';
+			  	// var city, gu_gun, eup_myun, legalDong, adminDong, ri, bunji;
+			  	// var buildingName, buildingDong, newRoadName, newBuildingIndex, newBuildingName, newBuildingDong;
+				// //새주소일 때 검색 결과 표출
+				// //새주소인 경우 matchFlag가 아닌 newMatchFlag가 응닶값으로 온다
+				// if($intRate[0].getElementsByTagName("newMatchFlag").length>0){
+				// 	// 새(도로명) 주소 좌표 매칭 구분 코드
+				// 	newMatchFlag = $intRate[0].getElementsByTagName("newMatchFlag")[0].childNodes[0].nodeValue;
+                //
+				// 	// 시/도 명칭
+				// 	if($intRate[0].getElementsByTagName("city_do").length>0){
+				// 		city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+				// 		newAddress += city+"\n";
+				// 	}
+				// 	// 군/구 명칭
+				// 	if($intRate[0].getElementsByTagName("gu_gun").length>0){
+				// 		gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+				// 		newAddress += gu_gun+"\n";
+				// 	}
+				// 	// 읍면동 명칭
+				// 	if($intRate[0].getElementsByTagName("eup_myun").length>0){
+				// 		eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+				// 		newAddress += eup_myun+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("legalDong").length>0){
+				// 		legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += legalDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("adminDong").length>0){
+				// 		adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += adminDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 리 명칭
+				// 	if($intRate[0].getElementsByTagName("ri").length>0){
+				// 		ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+				// 		newAddress += ri+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("bunji").length>0){
+				// 		bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+				// 		newAddress += bunji+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 매칭을 한 경우, 길 이름을 반환
+				// 	if($intRate[0].getElementsByTagName("newRoadName").length>0){
+				// 		newRoadName = $intRate[0].getElementsByTagName("newRoadName")[0].childNodes[0].nodeValue;
+				// 		newAddress += newRoadName+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 매칭을 한 경우, 건물 번호를 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingIndex").length>0){
+				// 		newBuildingIndex = $intRate[0].getElementsByTagName("newBuildingIndex")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingIndex+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 건물명 매칭을 한 경우, 건물 이름을 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingName").length>0){
+				// 		newBuildingName = $intRate[0].getElementsByTagName("newBuildingName")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingName+"\n";
+				// 	}
+				// 	// 새주소 건물을 매칭한 경우 새주소 건물 동을 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingDong").length>0){
+				// 		newBuildingDong = $intRate[0].getElementsByTagName("newBuildingDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingDong+"\n";
+				// 	}
+                //
+				// 	// 검색 결과 표출
+				// 	var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
+				// 	// $("#result").html("검색결과(새주소) : "+newAddress);
+				// 	startAdress = newAddress
+				// }
+                //
+				// //구주소일 때 검색 결과 표출
+				// //구주소인 경우 newMatchFlag가 아닌 MatchFlag가 응닶값으로 온다
+				// if($intRate[0].getElementsByTagName("matchFlag").length>0){
+				// 	// 매칭 구분 코드
+				// 	matchFlag = $intRate[0].getElementsByTagName("matchFlag")[0].childNodes[0].nodeValue;
+                //
+				// 	// 시/도 명칭
+				// 	if($intRate[0].getElementsByTagName("city_do").length>0){
+				// 		city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+				// 		address += city+"\n";
+				// 	}
+				// 	// 군/구 명칭
+				// 	if($intRate[0].getElementsByTagName("gu_gun").length>0){
+				// 		gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+				// 		address += gu_gun+"\n";
+				// 	}
+				// 	// 읍면동 명칭
+				// 	if($intRate[0].getElementsByTagName("eup_myun").length>0){
+				// 		eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+				// 		address += eup_myun+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("legalDong").length>0){
+				// 		legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+				// 		address += legalDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("adminDong").length>0){
+				// 		adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+				// 		address += adminDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 리 명칭
+				// 	if($intRate[0].getElementsByTagName("ri").length>0){
+				// 		ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+				// 		address += ri+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("bunji").length>0){
+				// 		bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+				// 		address += bunji+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("buildingName").length>0){
+				// 		buildingName = $intRate[0].getElementsByTagName("buildingName")[0].childNodes[0].nodeValue;
+				// 		address += buildingName+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("buildingDong").length>0){
+				// 		buildingDong = $intRate[0].getElementsByTagName("buildingDong")[0].childNodes[0].nodeValue;
+				// 		address += buildingDong+"\n";
+				// 	}
+                //
+				// 	// 검색 결과 표출
+				// 	var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
+				// 	// $("#result").html("검색결과(지번주소) : "+address);
+				// 	startAdress = address;
+				// }
+
+			},
+			error:function(request,status,error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+			});
+
+
+			// 2. API 사용요청 - 도착 버튼
+		var fullAddr2 = $('#fullAddr2').val();
+		$("#fullAddr2").text(fullAddr2);
+		$.ajax({
+			method:"GET",
+			url:"https://api2.sktelecom.com/tmap/geo/fullAddrGeo?version=1&format=xml&callback=result",
+			async:false,
+			data:{
+				"coordType" : "WGS84GEO",
+				"fullAddr" : fullAddr2,
+				"page" : "1",
+				"count" : "20",
+				"appKey" : "8821d117-dbd6-4a6c-8c6b-39d11be49d00",
+			},
+			success:function(response){
+				//기존 마커 지우기
+				// markerStartLayer.clearMarkers();
 
 				prtcl = response;
 
@@ -120,144 +318,147 @@ function initTmap(){
 					lat = $intRate[0].getElementsByTagName("newLat")[0].childNodes[0].nodeValue;
 				}
 
-		    	var size = new Tmap.Size(24, 38);
-				var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
-				var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_a.png' />", size, offset);
-				var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
-				markerStartLayer.addMarker(marker_s);
+				lon_e = lon
+				lat_e = lat
 
-				map.setCenter(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), 15);
+                // var size = new Tmap.Size(24, 38);
+				// var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
+				// var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_b_m_e.png' />", size, offset);
+				// var marker_s = new Tmap.Marker(new Tmap.LonLat(lon, lat).transform("EPSG:4326", "EPSG:3857"), icon);
+				// markerStartLayer.addMarker(marker_s);
 
-			  	//검색 결과 표출
-				var matchFlag, newMatchFlag;
-			  	//검색 결과 주소를 담을 변수
-			  	var address = '', newAddress = '';
-			  	var city, gu_gun, eup_myun, legalDong, adminDong, ri, bunji;
-			  	var buildingName, buildingDong, newRoadName, newBuildingIndex, newBuildingName, newBuildingDong;
-				//새주소일 때 검색 결과 표출
-				//새주소인 경우 matchFlag가 아닌 newMatchFlag가 응닶값으로 온다
-				if($intRate[0].getElementsByTagName("newMatchFlag").length>0){
-					// 새(도로명) 주소 좌표 매칭 구분 코드
-					newMatchFlag = $intRate[0].getElementsByTagName("newMatchFlag")[0].childNodes[0].nodeValue;
+				map.setCenter(new Tmap.LonLat((lon_s+lon_e)/2.0, (lat_s+lat_e)/2.0).transform("EPSG:4326", "EPSG:3857"), 15);
 
-					// 시/도 명칭
-					if($intRate[0].getElementsByTagName("city_do").length>0){
-						city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
-						newAddress += city+"\n";
-					}
-					// 군/구 명칭
-					if($intRate[0].getElementsByTagName("gu_gun").length>0){
-						gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
-						newAddress += gu_gun+"\n";
-					}
-					// 읍면동 명칭
-					if($intRate[0].getElementsByTagName("eup_myun").length>0){
-						eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
-						newAddress += eup_myun+"\n";
-					}
-					// 출력 좌표에 해당하는 법정동 명칭
-					if($intRate[0].getElementsByTagName("legalDong").length>0){
-						legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
-						newAddress += legalDong+"\n";
-					}
-					// 출력 좌표에 해당하는 법정동 명칭
-					if($intRate[0].getElementsByTagName("adminDong").length>0){
-						adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
-						newAddress += adminDong+"\n";
-					}
-					// 출력 좌표에 해당하는 리 명칭
-					if($intRate[0].getElementsByTagName("ri").length>0){
-						ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
-						newAddress += ri+"\n";
-					}
-					// 출력 좌표에 해당하는 지번 명칭
-					if($intRate[0].getElementsByTagName("bunji").length>0){
-						bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
-						newAddress += bunji+"\n";
-					}
-					// 새(도로명) 주소 매칭을 한 경우, 길 이름을 반환
-					if($intRate[0].getElementsByTagName("newRoadName").length>0){
-						newRoadName = $intRate[0].getElementsByTagName("newRoadName")[0].childNodes[0].nodeValue;
-						newAddress += newRoadName+"\n";
-					}
-					// 새(도로명) 주소 매칭을 한 경우, 건물 번호를 반환
-					if($intRate[0].getElementsByTagName("newBuildingIndex").length>0){
-						newBuildingIndex = $intRate[0].getElementsByTagName("newBuildingIndex")[0].childNodes[0].nodeValue;
-						newAddress += newBuildingIndex+"\n";
-					}
-					// 새(도로명) 주소 건물명 매칭을 한 경우, 건물 이름을 반환
-					if($intRate[0].getElementsByTagName("newBuildingName").length>0){
-						newBuildingName = $intRate[0].getElementsByTagName("newBuildingName")[0].childNodes[0].nodeValue;
-						newAddress += newBuildingName+"\n";
-					}
-					// 새주소 건물을 매칭한 경우 새주소 건물 동을 반환
-					if($intRate[0].getElementsByTagName("newBuildingDong").length>0){
-						newBuildingDong = $intRate[0].getElementsByTagName("newBuildingDong")[0].childNodes[0].nodeValue;
-						newAddress += newBuildingDong+"\n";
-					}
-
-					// 검색 결과 표출
-					var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
-					$("#result").html("검색결과(새주소) : "+newAddress);
-				}
-
-				//구주소일 때 검색 결과 표출
-				//구주소인 경우 newMatchFlag가 아닌 MatchFlag가 응닶값으로 온다
-				if($intRate[0].getElementsByTagName("matchFlag").length>0){
-					// 매칭 구분 코드
-					matchFlag = $intRate[0].getElementsByTagName("matchFlag")[0].childNodes[0].nodeValue;
-
-					// 시/도 명칭
-					if($intRate[0].getElementsByTagName("city_do").length>0){
-						city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
-						address += city+"\n";
-					}
-					// 군/구 명칭
-					if($intRate[0].getElementsByTagName("gu_gun").length>0){
-						gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
-						address += gu_gun+"\n";
-					}
-					// 읍면동 명칭
-					if($intRate[0].getElementsByTagName("eup_myun").length>0){
-						eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
-						address += eup_myun+"\n";
-					}
-					// 출력 좌표에 해당하는 법정동 명칭
-					if($intRate[0].getElementsByTagName("legalDong").length>0){
-						legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
-						address += legalDong+"\n";
-					}
-					// 출력 좌표에 해당하는 법정동 명칭
-					if($intRate[0].getElementsByTagName("adminDong").length>0){
-						adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
-						address += adminDong+"\n";
-					}
-					// 출력 좌표에 해당하는 리 명칭
-					if($intRate[0].getElementsByTagName("ri").length>0){
-						ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
-						address += ri+"\n";
-					}
-					// 출력 좌표에 해당하는 지번 명칭
-					if($intRate[0].getElementsByTagName("bunji").length>0){
-						bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
-						address += bunji+"\n";
-					}
-					// 출력 좌표에 해당하는 지번 명칭
-					if($intRate[0].getElementsByTagName("buildingName").length>0){
-						buildingName = $intRate[0].getElementsByTagName("buildingName")[0].childNodes[0].nodeValue;
-						address += buildingName+"\n";
-					}
-					// 출력 좌표에 해당하는 지번 명칭
-					if($intRate[0].getElementsByTagName("buildingDong").length>0){
-						buildingDong = $intRate[0].getElementsByTagName("buildingDong")[0].childNodes[0].nodeValue;
-						address += buildingDong+"\n";
-					}
-
-					// 검색 결과 표출
-					var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
-					$("#result").html("검색결과(지번주소) : "+address);
-
-				}
+			  	// //검색 결과 표출
+				// var matchFlag, newMatchFlag;
+			  	// //검색 결과 주소를 담을 변수
+			  	// var address = '', newAddress = '';
+			  	// var city, gu_gun, eup_myun, legalDong, adminDong, ri, bunji;
+			  	// var buildingName, buildingDong, newRoadName, newBuildingIndex, newBuildingName, newBuildingDong;
+				// //새주소일 때 검색 결과 표출
+				// //새주소인 경우 matchFlag가 아닌 newMatchFlag가 응닶값으로 온다
+				// if($intRate[0].getElementsByTagName("newMatchFlag").length>0){
+				// 	// 새(도로명) 주소 좌표 매칭 구분 코드
+				// 	newMatchFlag = $intRate[0].getElementsByTagName("newMatchFlag")[0].childNodes[0].nodeValue;
+                //
+				// 	// 시/도 명칭
+				// 	if($intRate[0].getElementsByTagName("city_do").length>0){
+				// 		city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+				// 		newAddress += city+"\n";
+				// 	}
+				// 	// 군/구 명칭
+				// 	if($intRate[0].getElementsByTagName("gu_gun").length>0){
+				// 		gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+				// 		newAddress += gu_gun+"\n";
+				// 	}
+				// 	// 읍면동 명칭
+				// 	if($intRate[0].getElementsByTagName("eup_myun").length>0){
+				// 		eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+				// 		newAddress += eup_myun+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("legalDong").length>0){
+				// 		legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += legalDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("adminDong").length>0){
+				// 		adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += adminDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 리 명칭
+				// 	if($intRate[0].getElementsByTagName("ri").length>0){
+				// 		ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+				// 		newAddress += ri+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("bunji").length>0){
+				// 		bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+				// 		newAddress += bunji+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 매칭을 한 경우, 길 이름을 반환
+				// 	if($intRate[0].getElementsByTagName("newRoadName").length>0){
+				// 		newRoadName = $intRate[0].getElementsByTagName("newRoadName")[0].childNodes[0].nodeValue;
+				// 		newAddress += newRoadName+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 매칭을 한 경우, 건물 번호를 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingIndex").length>0){
+				// 		newBuildingIndex = $intRate[0].getElementsByTagName("newBuildingIndex")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingIndex+"\n";
+				// 	}
+				// 	// 새(도로명) 주소 건물명 매칭을 한 경우, 건물 이름을 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingName").length>0){
+				// 		newBuildingName = $intRate[0].getElementsByTagName("newBuildingName")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingName+"\n";
+				// 	}
+				// 	// 새주소 건물을 매칭한 경우 새주소 건물 동을 반환
+				// 	if($intRate[0].getElementsByTagName("newBuildingDong").length>0){
+				// 		newBuildingDong = $intRate[0].getElementsByTagName("newBuildingDong")[0].childNodes[0].nodeValue;
+				// 		newAddress += newBuildingDong+"\n";
+				// 	}
+                //
+				// 	// 검색 결과 표출
+				// 	var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
+				// 	$("#result").html("출발 : "+startAdress+"\n"+"도착 : "+newAddress);
+				// }
+                //
+				// //구주소일 때 검색 결과 표출
+				// //구주소인 경우 newMatchFlag가 아닌 MatchFlag가 응닶값으로 온다
+				// if($intRate[0].getElementsByTagName("matchFlag").length>0){
+				// 	// 매칭 구분 코드
+				// 	matchFlag = $intRate[0].getElementsByTagName("matchFlag")[0].childNodes[0].nodeValue;
+                //
+				// 	// 시/도 명칭
+				// 	if($intRate[0].getElementsByTagName("city_do").length>0){
+				// 		city = $intRate[0].getElementsByTagName("city_do")[0].childNodes[0].nodeValue;
+				// 		address += city+"\n";
+				// 	}
+				// 	// 군/구 명칭
+				// 	if($intRate[0].getElementsByTagName("gu_gun").length>0){
+				// 		gu_gun = $intRate[0].getElementsByTagName("gu_gun")[0].childNodes[0].nodeValue;
+				// 		address += gu_gun+"\n";
+				// 	}
+				// 	// 읍면동 명칭
+				// 	if($intRate[0].getElementsByTagName("eup_myun").length>0){
+				// 		eup_myun = $intRate[0].getElementsByTagName("eup_myun")[0].childNodes[0].nodeValue;
+				// 		address += eup_myun+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("legalDong").length>0){
+				// 		legalDong = $intRate[0].getElementsByTagName("legalDong")[0].childNodes[0].nodeValue;
+				// 		address += legalDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 법정동 명칭
+				// 	if($intRate[0].getElementsByTagName("adminDong").length>0){
+				// 		adminDong = $intRate[0].getElementsByTagName("adminDong")[0].childNodes[0].nodeValue;
+				// 		address += adminDong+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 리 명칭
+				// 	if($intRate[0].getElementsByTagName("ri").length>0){
+				// 		ri = $intRate[0].getElementsByTagName("ri")[0].childNodes[0].nodeValue;
+				// 		address += ri+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("bunji").length>0){
+				// 		bunji = $intRate[0].getElementsByTagName("bunji")[0].childNodes[0].nodeValue;
+				// 		address += bunji+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("buildingName").length>0){
+				// 		buildingName = $intRate[0].getElementsByTagName("buildingName")[0].childNodes[0].nodeValue;
+				// 		address += buildingName+"\n";
+				// 	}
+				// 	// 출력 좌표에 해당하는 지번 명칭
+				// 	if($intRate[0].getElementsByTagName("buildingDong").length>0){
+				// 		buildingDong = $intRate[0].getElementsByTagName("buildingDong")[0].childNodes[0].nodeValue;
+				// 		address += buildingDong+"\n";
+				// 	}
+                //
+				// 	// 검색 결과 표출
+				// 	var docs = "<a style='color:orange' href='#webservice/docs/fullTextGeocoding'>Docs</a>"
+				// 	$("#result").html("출발 : "+startAdress+"\n"+"도착 : "+address);
+                //
+				// }
 
 			},
 			error:function(request,status,error){
@@ -265,19 +466,15 @@ function initTmap(){
 			}
 		});
 
-	});
-	////////////
 
-
-
-	// 2. 시작, 도착 심볼찍기
+		// 2. 시작, 도착 심볼찍기
 	// 시작
 	var markerStartLayer = new Tmap.Layer.Markers("start");
 	map.addLayer(markerStartLayer);
 	var size = new Tmap.Size(24, 38);
 	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
 	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_s.png' />", size, offset);
-	var marker_s = new Tmap.Marker(new Tmap.LonLat("127.161552", "37.611903").transform("EPSG:4326", "EPSG:3857"), icon);
+	var marker_s = new Tmap.Marker(new Tmap.LonLat(lon_s, lat_s).transform("EPSG:4326", "EPSG:3857"), icon);
 	markerStartLayer.addMarker(marker_s);
 	// 도착
 	var markerEndLayer = new Tmap.Layer.Markers("end");
@@ -285,7 +482,7 @@ function initTmap(){
 	var size = new Tmap.Size(24, 38);
 	var offset = new Tmap.Pixel(-(size.w / 2), -size.h);
 	var icon = new Tmap.IconHtml("<img src='http://tmapapis.sktelecom.com/upload/tmap/marker/pin_r_m_e.png' />", size, offset);
-	var marker_e = new Tmap.Marker(new Tmap.LonLat("127.157488", "37.608094").transform("EPSG:4326", "EPSG:3857"), icon);
+	var marker_e = new Tmap.Marker(new Tmap.LonLat(lon_e, lat_e).transform("EPSG:4326", "EPSG:3857"), icon);
 	markerEndLayer.addMarker(marker_e);
 	// 3. 경유지 심볼 찍기
 	// var markerWaypointLayer = new Tmap.Layer.Markers("waypoint");
@@ -303,17 +500,17 @@ function initTmap(){
 	// markerWaypointLayer.addMarker(marker);
 	// 4. 경로탐색 API 사용요청
 	var headers = {};
-	headers["appKey"]="f3822d08-6fcc-4d0c-b6bd-fb7634cea861";
+	headers["appKey"]="8821d117-dbd6-4a6c-8c6b-39d11be49d00";
 	$.ajax({
 		method:"POST",
 		headers : headers,
 		url:"https://api2.sktelecom.com/tmap/routes/pedestrian?version=1&format=xml",//
 		async:false,
 		data:{
-			startX : "127.161552",
-			startY : "37.611903",
-			endX : "127.157488",
-			endY : "37.608094",
+			startX : lon_s,
+			startY : lat_s,
+			endX : lon_e,
+			endY : lat_e,
 			// passList : "129.351388,36.015623",
 			reqCoordType : "WGS84GEO",
 			resCoordType : "EPSG3857",
@@ -364,6 +561,10 @@ function initTmap(){
 		error:function(request,status,error){
 			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
+	});
+	////////////
+
+
 	});
 }
 	</script>
