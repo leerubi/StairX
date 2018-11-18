@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Map/bohangja.html" afterPath="$PROJECT_DIR$/Map/bohangja.html" />
-    </list>
+    <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +41,7 @@
       <file leaf-file-name="bohangja.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="9018">
               <caret line="603" column="12" lean-forward="true" selection-start-line="603" selection-start-column="12" selection-end-line="603" selection-end-column="12" />
               <folding />
             </state>
@@ -441,7 +438,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="9018">
           <caret line="603" column="12" lean-forward="true" selection-start-line="603" selection-start-column="12" selection-end-line="603" selection-end-column="12" />
           <folding />
         </state>
