@@ -90,6 +90,34 @@ function initTmap(){
    });
    map.setCenter(new Tmap.LonLat("127.161552", "37.611903").transform("EPSG:4326", "EPSG:3857"), 15);
 
+   // 지도상에 그려질 스타일을 설정합니다
+      var style_red = {
+         fillColor:"#58C9B9",
+         fillOpacity:0.8,
+         strokeColor: "#FF0000",
+         strokeWidth: 1,
+         strokeDashstyle: "solid",
+         strokeOpacity: 0.2,
+         pointRadius: 60
+      };
+
+      //원
+      var vector_layer = new Tmap.Layer.Vector('Tmap Vector Layer'); // 백터 레이어 생성
+      map.addLayers([vector_layer]); // 지도에 백터 레이어 추가
+
+      var coord = new Tmap.LonLat(127.158724, 37.609257).transform("EPSG:4326", "EPSG:3857");
+      var circle = new Tmap.Geometry.Circle(coord.lon, coord.lat, 30); // 원 생성
+
+      var circleFeature = new Tmap.Feature.Vector(circle, null, style_red); // 원 백터 생성
+      vector_layer.addFeatures([circleFeature]); // 원 백터 를 백터 레이어에 추가
+
+      //원2
+      var coord = new Tmap.LonLat(127.155902, 37.611059).transform("EPSG:4326", "EPSG:3857");
+      var circle = new Tmap.Geometry.Circle(coord.lon, coord.lat, 30); // 원 생성
+
+      var circleFeature = new Tmap.Feature.Vector(circle, null, style_red); // 원 백터 생성
+      vector_layer.addFeatures([circleFeature]); // 원 백터 를 백터 레이어에 추가
+
 
    ////////////
       $("#btn_select").click(function(){
@@ -597,13 +625,13 @@ function initTmap(){
             <h1><span style = "color: #00000000">STAIR MAP</span></h1>
          </div>
          <div style   = "text-align:center">
-                  <h1><span style = "font-size: 2.0em; color: white">Stair X</span></h1>
+                  <h1><span style = "font-size: 2.0em; color: white">STAIR X</span></h1>
          </div>
          <div style   = "text-align:center">
-                  <p><span style = "font-size: 1.3em; color: white">계단이 없는 곳으로 안내해 줄 지도</span></p>
+                  <p><span style = "font-size: 1.3em; color: white">당신을 계단이 없는 곳으로 안내합니다.</span></p>
          </div>
          <div style   = "text-align:center">
-                  <p><span style = "font-size: 1.3em; color: #00000000">계단이 없는 곳으로 안내해 줄 지도</span></p>
+                  <p><span style = "font-size: 1.3em; color: #00000000">당신을 계단이 없는 곳으로 안내합니다.</span></p>
          </div>
 
       <div style="text-align:center" >
@@ -617,7 +645,7 @@ function initTmap(){
       <input type="text" class="text_custom" id="fullAddr2" name="fullAddr2" value="">
    </div>
          <div style   = "text-align:center">
-                  <p><span style = "font-size: 1.3em; color: #00000000">계단이 없는 곳으로 안내해 줄 지도</span></p>
+                  <p><span style = "font-size: 1.3em; color: #00000000">당신을 계단이 없는 곳으로 안내합니다.</span></p>
          </div>
 
    <a type="button" value="click" class="btn_select" id="btn_select" name="btn_select">
@@ -625,7 +653,7 @@ function initTmap(){
    </a>
 
          <div style   = "text-align:center">
-                  <p><span style = "font-size: 1.3em; color: #00000000">계단이 없는 곳으로 안내해 줄 지도</span></p>
+                  <p><span style = "font-size: 1.3em; color: #00000000">당신을 계단이 없는 곳으로 안내합니다.</span></p>
          </div>
 
         <div id="map_div">
