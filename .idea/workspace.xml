@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Map/bohangja.html" afterPath="$PROJECT_DIR$/Map/bohangja.html" />
-    </list>
+    <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +61,8 @@
       <file leaf-file-name="bohangja.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2010">
-              <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
+            <state relative-caret-position="434">
+              <caret line="308" column="21" lean-forward="true" selection-start-line="308" selection-start-column="21" selection-end-line="308" selection-end-column="21" />
               <folding>
                 <marker date="1542512458723" expanded="true" signature="9452:9464" ph="..." />
                 <marker date="1542512458723" expanded="true" signature="12044:12056" ph="..." />
@@ -151,6 +149,7 @@
       <find>fullAddr</find>
       <find>pload/tmap/marker/pin</find>
       <find>key</find>
+      <find>요청</find>
     </findStrings>
     <replaceStrings>
       <replace>resources/css</replace>
@@ -801,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2010">
-          <caret line="564" column="16" lean-forward="false" selection-start-line="564" selection-start-column="16" selection-end-line="564" selection-end-column="16" />
+        <state relative-caret-position="434">
+          <caret line="308" column="21" lean-forward="true" selection-start-line="308" selection-start-column="21" selection-end-line="308" selection-end-column="21" />
           <folding>
             <marker date="1542512458723" expanded="true" signature="9452:9464" ph="..." />
             <marker date="1542512458723" expanded="true" signature="12044:12056" ph="..." />
