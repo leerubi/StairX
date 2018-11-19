@@ -1,0 +1,70 @@
+[1]
+// Good
+var birthdayCheer = "Happy Birthday!"
+print(birthdayCheer)
+
+// Better!
+var name = "Rubi"
+var customizedBirthdayCheer = "Happy Birthday, \(name)!"
+print(customizedBirthdayCheer)
+
+// Count
+print(name.count)
+
+// Emoji
+var emoji = "🐰"
+print(customizedBirthdayCheer, "\(emoji)")
+
+
+[2]
+.replacingOccurrences(of: "a", with: "A")
+
+
+[3]
+let rect1 = Rectangle(height: 7, width: 5)
+let rect2 = Rectangle(height: 5, width: 7)
+
+Exercise 1 would evaluate to true. The variable description is identical to the string we evaluate against.
+
+Exercise 2 would also evaluate to true; the number 1 is the same regardless of whether it's represented as a float or an integer.
+
+Exercise 3 would evaluate to false. The constants rect1 and rect2 contain different values for height and width.
+
+
+[4]
+let arrayOfInts = [10,8,9]
+let biggerArrayOfInts = [6,5,4,3]
+
+let arraySizeBool = arrayOfInts.count < biggerArrayOfInts.count
+
+let anotherAlphabeticalBool = "xerox" > "xylophone"
+
+var age = 29
+let applySeniorDiscount = age >= 65
+
+Exercise 1 would evaluate to true; arrayOfInts has three elements while biggerArrayOfInts has four elements. Three is, in fact, less than four.
+
+Exercise 2 would evaluate to false. "xerox" would come before "xylophone" in the dictionary, making it "less than" xylophone.
+
+Exercise 3 would also evaluate to false. A 29-year-old still has a ways to go before qualifying for a senior discount at age 65!
+
+
+[5]
+false 0 
+true not 0
+
+
+[6]
+func screen(onGuestList: Bool, person: String) {
+  if onGuestList {
+    admit(person: person)
+  }
+
+  if !onGuestList {
+    deny(person: person)
+  }
+}
+
+
+[7]
+There are some special terms here that require special attention. When we look at the definition of a function like sayHelloToStudent(student: String), any input values that are specified are called parameters. Then, when we actually call a function, as in sayHelloToStudent(student: jarrod) the input values that are passed to the function are known as arguments.

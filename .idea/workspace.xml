@@ -2,8 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26676408-d019-4e44-ad0b-a1436d381160" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/flightsClimbed_csvs/filghtsClimbed_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-31-37_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-31-37_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-40-18_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-40-18_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-43-59_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-43-59_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-48-26_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-48-26_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-52-59_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-52-59_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-57-10_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_18-57-10_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-02-40_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-02-40_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-11-56_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-11-56_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-20-19_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-20-19_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-25-07_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-25-07_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-26-11_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-26-11_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-29-15_gps.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/loaded_csvs/2018-Nov-17_19-29-15_sensor.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-31-37_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-40-18_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-43-59_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-48-26_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-52-59_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_18-57-10_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-02-40_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-11-56_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-20-19_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-25-07_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-26-11_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/merged_csvs/2018-Nov-17_19-29-15_merged.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-31-37_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-31-37_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-40-18_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-40-18_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-43-59_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-43-59_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-48-26_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-48-26_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-52-59_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-52-59_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-57-10_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_18-57-10_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-02-40_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-02-40_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-11-56_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-11-56_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-20-19_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-20-19_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-25-07_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-25-07_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-26-11_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-26-11_sensor_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-29-15_gps_processed.csv" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/iPhone Data/csvs/processed_csvs/2018-Nov-17_19-29-15_sensor_processed.csv" afterPath="" />
       <change beforePath="$PROJECT_DIR$/Map/bohangja.html" afterPath="$PROJECT_DIR$/Map/bohangja.html" />
-      <change beforePath="$PROJECT_DIR$/Map/kakao_ver.html" afterPath="$PROJECT_DIR$/Map/kakao_ver.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,8 +105,8 @@
       <file leaf-file-name="bohangja.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="655" column="93" lean-forward="false" selection-start-line="655" selection-start-column="93" selection-end-line="655" selection-end-column="93" />
+            <state relative-caret-position="360">
+              <caret line="627" column="74" lean-forward="false" selection-start-line="627" selection-start-column="74" selection-end-line="627" selection-end-column="74" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#h1#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -268,7 +329,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -508,8 +568,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Map/bohangja.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="655" column="93" lean-forward="false" selection-start-line="655" selection-start-column="93" selection-end-line="655" selection-end-column="93" />
+        <state relative-caret-position="360">
+          <caret line="627" column="74" lean-forward="false" selection-start-line="627" selection-start-column="74" selection-end-line="627" selection-end-column="74" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#h1#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
