@@ -19,11 +19,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZm-gh-LSF">
-                                <rect key="frame" x="151" y="318" width="72" height="30"/>
+                                <rect key="frame" x="125" y="315" width="126" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send Data"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="데이터 내보내기"/>
                                 <connections>
                                     <action selector="sendEmail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hXF-hv-rcQ"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="움직임 기록을 시작하세요!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vg6-gX-6mK">
+                                <rect key="frame" x="0.0" y="128" width="375" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyr-Gn-knY">
+                                <rect key="frame" x="151" y="248" width="74" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="기록 시작">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bXJ-Ta-h7X"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -32,6 +51,8 @@
                     </view>
                     <connections>
                         <outlet property="emailButton" destination="vZm-gh-LSF" id="rl8-zc-Gaa"/>
+                        <outlet property="recordButton" destination="Wyr-Gn-knY" id="hTN-k1-ECv"/>
+                        <outlet property="textView" destination="vg6-gX-6mK" id="jw5-lP-SOe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
