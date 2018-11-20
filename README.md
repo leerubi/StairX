@@ -53,7 +53,7 @@ Progress Report
     - 데이터가 많을 수록 임계값 대신 voting법 등으로 계단 위치 추정도 가능해질 듯
   - GPS 정확도 -> 이미 높음
   - 내려가는 계단도 인식하기 -> Health App 내부 알고리즘 모르는 채로 힘듦
-  - 낮으 계단이나 턱도 인식하기 -> 거의 불가능
+  - 낮은 계단이나 턱도 인식하기 -> 거의 불가능
   
 
 ### Milestone 3 : Convert technologies to a nice service!
